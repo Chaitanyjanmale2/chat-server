@@ -1,7 +1,14 @@
 const http = require('https').createServer();
 const io = require('socket.io')(http, {
-    cors: { origin: "*" }
-});
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"],
+        transports: ['websocket', 'polling'],
+        credentials: true
+    },
+    allowEIO3: true
+}
+);
 
 const os = require('os');
 const hostname = os.hostname();
